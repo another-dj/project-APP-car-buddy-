@@ -21,7 +21,7 @@ router.post("/register", uploader.single("avatar"), (req, res, next) => {
   console.log("req", req);
   console.log("req body: ", req.body);
   console.log("BODY", name, email, password);
-  const avatar = req.file.url;
+  const avatar = req.file ? req.file.url : "";
   return bcryptjs
     .hash(password, 10)
     .then(hash => {
@@ -61,7 +61,7 @@ router.post("/login", (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.redirect("/cars");
+        res.redirect("/");
       } else {
         return Promise.reject(new Error("Wrong password."));
       }
