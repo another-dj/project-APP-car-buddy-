@@ -8,6 +8,7 @@ const logger = require("morgan");
 const sassMiddleware = require("node-sass-middleware");
 const serveFavicon = require("serve-favicon");
 const hbs = require("hbs");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const expressSession = require("express-session");
 const connectMongo = require("connect-mongo");
@@ -19,6 +20,7 @@ const User = require("./models/user");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/user");
 const carRouter = require("./routes/car");
+const authenticationRouter = require("./routes/authentication");
 
 const app = express();
 
@@ -41,10 +43,6 @@ app.use(
   })
 );
 app.use(express.static(join(__dirname, "public")));
-
-app.use("/", indexRouter);
-app.use("/user", usersRouter);
-app.use("/car", carRouter);
 
 // COOKIE
 app.use(cookieParser());
@@ -89,6 +87,11 @@ app.use((req, res, next) => {
     next();
   }
 });
+
+app.use("/", indexRouter);
+app.use("/user", usersRouter);
+app.use("/cars", carRouter);
+app.use("/authentication", authenticationRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

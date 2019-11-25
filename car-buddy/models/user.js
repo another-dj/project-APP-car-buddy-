@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
     trim: true,
     unique: true
   },
-  hashpassword: {
+  passwordHash: {
     type: String,
     required: true
   },

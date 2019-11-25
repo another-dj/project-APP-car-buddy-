@@ -1,0 +1,11 @@
+{{#if user}}
+        <a href="/">{{user.name}}'s Profile    <img src="{{user.avatar}}" alt="{{user.name}} avatar"></a>
+        <form action="/authentication/logout" method="POST">
+          <button>Log Out</button>
+        </form>
+        <br>
+        <a href="/cars/list">Garage</a>
+        {{else}}
+        <a href="/authentication/register">Register</a>
+        <a href="/authentication/login">Log In</a>
+      {{/if}}
