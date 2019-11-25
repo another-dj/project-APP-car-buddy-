@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
   userId: {
-    type: mongoose.Types.ObectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  kms: String,
   oil: {
     type:Boolean
   },
