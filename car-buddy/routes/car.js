@@ -14,27 +14,26 @@ const User = require("./../models/user");
   res.render('carList');
 }); */
 
-router.get('/new', (req, res, next)=> {
-  res.render('car/new');
+router.get("/new", (req, res, next) => {
+  res.render("car/new");
 });
 
-router.post('/new', (req, res, next) => {
+router.post("/new", (req, res, next) => {
   // console.log(req.file);
-  //const creatorId = req.session.user;
+  const creatorId = req.session.user;
   const kms = req.body.kms;
   const oil = req.body.oil;
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
-  
+
   Car.create({
-    //creatorId,
+    creatorId,
     kms,
     //oil,
     fuelType,
     insuranceType,
     insuranceDate
-
   })
     .then(document => {
       console.log(document);
@@ -45,16 +44,15 @@ router.post('/new', (req, res, next) => {
     });
 });
 
-router.get('/:carId', (req, res, next) => {
+router.get("/:carId", (req, res, next) => {
   const carId = req.params.carId;
   Car.findById(carId)
     .then(car => {
-      res.render('car/single', { car });
+      res.render("car/single", { car });
     })
     .catch(error => {
       next(error);
     });
 });
-
 
 module.exports = router;

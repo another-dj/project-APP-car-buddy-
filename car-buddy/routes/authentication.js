@@ -12,13 +12,13 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/register", (req, res, next) => {
+  
   res.render("authentication/register");
 });
 
-
 router.post("/register", uploader.single("avatar"), (req, res, next) => {
   const { name, email, password } = req.body;
- 
+
   const avatar = req.file.url;
   console.log(avatar);
   console.log(name, email, password);
@@ -75,8 +75,5 @@ router.post("/logout", (req, res, next) => {
   req.session.destroy();
   res.redirect("/");
 });
-
-
-
 
 module.exports = router;
