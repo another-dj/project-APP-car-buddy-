@@ -23,7 +23,11 @@ const schema = new mongoose.Schema({
       ref: "Car"
     }
   ],
-  avatar: String
-});
+  avatar: String,
+  },
+  {
+    timestamps: true
+  }
+);
 
 module.exports = mongoose.model("User", schema);
