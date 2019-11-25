@@ -7,6 +7,9 @@ const schema = new mongoose.Schema({
     type: mongoose.Types.ObectId,
     ref: 'User'
   },
+  oil: {
+    type:Boolean
+  },
   fuelType: {
     type: String,
     enum: ['petrol', 'diesel'],
@@ -17,9 +20,7 @@ const schema = new mongoose.Schema({
   },
   insuranceDate: {
     type: Date
-  },
-  iucDate: Date,
-  notes: String,
+  }
 });
 
 module.exports = mongoose.model('Car', schema);
