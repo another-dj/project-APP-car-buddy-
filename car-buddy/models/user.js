@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   name: {
@@ -10,8 +10,20 @@ const schema = new mongoose.Schema({
   email: {
     type: String,
     lowercase: true,
-    trim: true
-  }
+    trim: true,
+    unique: true
+  },
+  hashpassword: {
+    type: String,
+    required: true
+  },
+  mycars: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Car"
+    }
+  ],
+  avatar: String
 });
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model("User", schema);
