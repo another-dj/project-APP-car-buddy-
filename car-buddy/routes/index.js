@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const { Router } = require('express');
+const { Router } = require("express");
 const router = new Router();
 
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Hello World!' });
+router.get("/", (req, res, next) => {
+  res.render("index", { title: "Car Buddy" });
 });
 
 module.exports = router;

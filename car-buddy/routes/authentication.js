@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/register", (req, res, next) => {
-  res.render("register");
+  res.render("authentication/register");
 });
 
 
@@ -43,7 +43,7 @@ router.post("/register", uploader.single("avatar"), (req, res, next) => {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("login");
+  res.render("authentication/login");
 });
 
 router.post("/login", (req, res, next) => {
@@ -61,7 +61,7 @@ router.post("/login", (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.redirect("/");
+        res.redirect("/cars");
       } else {
         return Promise.reject(new Error("Wrong password."));
       }
