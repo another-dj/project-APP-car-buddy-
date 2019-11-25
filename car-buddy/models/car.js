@@ -7,6 +7,7 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  name: String,
   kms: String,
   oil: {
     type:Boolean
@@ -17,7 +18,7 @@ const schema = new mongoose.Schema({
   },
   insuranceType: {
     type: String,
-    enum: ['Anual', 'semestral', 'trimestral', 'monthly'],
+    enum: ['yearly', 'semiannual', 'quarterly', 'monthly'],
   },
   insuranceDate: {
     type: Date

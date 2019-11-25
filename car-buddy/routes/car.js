@@ -23,6 +23,7 @@ router.post("/new", (req, res, next) => {
   const creatorId = req.session.user;
   const kms = req.body.kms;
   const oil = req.body.oil;
+  const name = req.body.name;
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
@@ -30,6 +31,7 @@ router.post("/new", (req, res, next) => {
   Car.create({
     creatorId,
     kms,
+    name,
     //oil,
     fuelType,
     insuranceType,

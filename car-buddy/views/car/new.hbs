@@ -1,22 +1,24 @@
 <h1>Add a new Car</h1>
 
-<form action="/car/new" method="POST">
+<form action="/cars/new" method="POST">
 
-  <label for="km">Kilometers</label>
-  <input type="text" name="kms" id="kms"/>
+  <label for="name">Car Name</label>
+  <input type="text" name="name" id="name"/>
+  <label for="kms">Kilometers</label>
+  <input type="number" name="kms" id="kms"/>
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">Insurance Type</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>Month</option>
-      <option>Trimester</option>
-      <option>Semester</option>
-      <option>Anual</option>
+    <select class="form-control" id="exampleFormControlSelect1" name="insuranceType" >
+      <option>yearly</option>
+      <option>semiannualy</option>
+      <option>quarterly</option>
+      <option>monthly</option>
     </select>
   </div>
 
   <label for="insurance-date">Insurance Date</label>
-  <input type="date" name="insurance-date" id="insurance-date"/>
+  <input type="date" name="insuranceDate" id="insurance-date"/>
 
  <div class="form-group">
     <label for="exampleFormControlSelect1">Fuel Type</label>
