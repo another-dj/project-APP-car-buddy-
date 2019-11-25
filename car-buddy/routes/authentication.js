@@ -15,13 +15,13 @@ router.get("/register", (req, res, next) => {
   res.render("authentication/register");
 });
 
-
 router.post("/register", uploader.single("avatar"), (req, res, next) => {
   const { name, email, password } = req.body;
- 
+
+  console.log("req", req);
+  console.log("req body: ", req.body);
+  console.log("BODY", name, email, password);
   const avatar = req.file.url;
-  console.log(avatar);
-  console.log(name, email, password);
   return bcryptjs
     .hash(password, 10)
     .then(hash => {
@@ -29,7 +29,7 @@ router.post("/register", uploader.single("avatar"), (req, res, next) => {
         name,
         email,
         passwordHash: hash,
-        avatar
+        avatar: avatar
       });
     })
     .then(user => {
@@ -75,8 +75,5 @@ router.post("/logout", (req, res, next) => {
   req.session.destroy();
   res.redirect("/");
 });
-
-
-
 
 module.exports = router;
