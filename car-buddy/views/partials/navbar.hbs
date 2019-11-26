@@ -1,5 +1,5 @@
 {{#if user}}
-        <a href="/">{{user.name}}'s Profile    <img src="{{user.avatar}}" alt="{{user.name}} avatar"></a>
+        <a href="/user/{{user._id}}">{{user.name}}'s Profile    <img src="{{user.avatar}}" alt="{{user.name}} avatar"></a>
         <form action="/authentication/logout" method="POST">
           <button>Log Out</button>
         </form>

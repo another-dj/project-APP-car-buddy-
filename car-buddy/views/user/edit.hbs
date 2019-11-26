@@ -1,0 +1,11 @@
+<form action="/user/edit/{{user._id}}" method="POST">
+  {{!-- <input type="file" name="avatar" /> --}}
+
+  <label for="input-name">Change name</label>
+  <input type="text" id="input-name" name="name" value="{{user.name}}" />
+
+  <label for="input-password">Change password</label>
+  <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
+
+  <button type="submit">Confirm changes</button>
+</form>
