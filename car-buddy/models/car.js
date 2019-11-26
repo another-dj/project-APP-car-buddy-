@@ -1,28 +1,28 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: "User"
   },
   name: String,
   kms: String,
   oil: {
-    type:Boolean
+    type: Boolean
   },
   fuelType: {
     type: String,
-    enum: ['petrol', 'diesel'],
+    enum: ["petrol", "diesel"]
   },
   insuranceType: {
     type: String,
-    enum: ['yearly', 'semiannual', 'quarterly', 'monthly'],
+    enum: ["yearly", "semiannualy", "quarterly", "monthly"]
   },
   insuranceDate: {
-    type: Date
+    type: String
   }
 });
 
-module.exports = mongoose.model('Car', schema);
+module.exports = mongoose.model("Car", schema);

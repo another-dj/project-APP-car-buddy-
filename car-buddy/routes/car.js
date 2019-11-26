@@ -27,11 +27,13 @@ router.post("/new", (req, res, next) => {
   // console.log(req.file);
   const userId = req.session.user;
   const kms = req.body.kms;
-  const oil = req.body.oil;
+  //const oil = req.body.oil;
   const name = req.body.name;
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
+  
+  
 
   const car = {
     userId,
@@ -43,14 +45,10 @@ router.post("/new", (req, res, next) => {
     insuranceDate
   };
 
-  Car.create(car).catch(error => {
-    next(error);
-  });
-
-  User.findByIdAndUpdate(userId, { myCars: car })
-
+  Car.create(car)
     .then(document => {
       console.log(document);
+      console.log("INSURANCE DATE",insuranceDate);
       res.redirect(`/cars/list`);
     })
     .catch(error => {
@@ -69,7 +67,7 @@ router.get("/:carId", (req, res, next) => {
     });
 });
 
-router.post('/:carId', (req, res, next) => {
+router.post("/:carId", (req, res, next) => {
   const carId = req.params.carId;
   Car.findByIdAndUpdate(carId, {
     kms: req.body.kms
