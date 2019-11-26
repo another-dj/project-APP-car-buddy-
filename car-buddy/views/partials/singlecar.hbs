@@ -1,1 +1,5 @@
-<h1> car partial</h1>
+<h1>{{car.name}}</h1>
+<form action="/cars/{{id}}" method="POST">
+<label for="kms">Kilometers</label>
+<input type="number" name="kms" id="kms" value="{{car.kms}}"/>
+</form>
