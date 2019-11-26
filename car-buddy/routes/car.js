@@ -69,4 +69,18 @@ router.get("/:carId", (req, res, next) => {
     });
 });
 
+router.post('/:carId', (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findByIdAndUpdate(carId, {
+    kms: req.body.kms
+  })
+    .then(data => {
+      console.log(data);
+      res.redirect(`/cars/${carId}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 module.exports = router;
