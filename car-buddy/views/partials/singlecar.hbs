@@ -1,6 +1,12 @@
 
-<h1>{{this.name}}</h1>
+<h3>{{this.name}}</h3>
 <form action="/cars/{{id}}" method="POST">
 <label for="kms">Kilometers</label>
 <input type="number" name="kms" id="kms" value="{{kms}}"/>
 </form>
+
+<h2>{{this.oil}}</h2>
+<h2>{{this.fuelType}}</h2>
+<h2>{{this.insuranceType}} {{this.oil}}</h2>
+
+
