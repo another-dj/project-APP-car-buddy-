@@ -27,29 +27,69 @@ router.post("/new", (req, res, next) => {
   // console.log(req.file);
   const userId = req.session.user;
   const kms = req.body.kms;
-  //const oil = req.body.oil;
+  const oil = req.body.oil;
   const name = req.body.name;
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
-  
-  
+  const tyrePressure = req.body.kms;
 
   const car = {
     userId,
     kms,
     name,
-    //oil,
+    oil,
     fuelType,
     insuranceType,
-    insuranceDate
+    insuranceDate,
+    tyrePressure
   };
 
   Car.create(car)
     .then(document => {
       console.log(document);
-      console.log("INSURANCE DATE",insuranceDate);
+      console.log("INSURANCE DATE", insuranceDate);
       res.redirect(`/cars/list`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+// car model update
+router.post("/kms/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findByIdAndUpdate(carId, {
+    kms: req.body.kms
+  })
+    .then(data => {
+      console.log(data);
+      res.redirect(`/cars/${carId}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/oil/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findByIdAndUpdate(carId, {
+    oil: req.body.oil
+  })
+    .then(data => {
+      console.log(data);
+      res.redirect(`/cars/${carId}`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/delete/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findByIdAndDelete(carId)
+    .then(() => {
+      res.redirect("/cars/list");
     })
     .catch(error => {
       next(error);
@@ -66,19 +106,4 @@ router.get("/:carId", (req, res, next) => {
       next(error);
     });
 });
-
-router.post("/:carId", (req, res, next) => {
-  const carId = req.params.carId;
-  Car.findByIdAndUpdate(carId, {
-    kms: req.body.kms
-  })
-    .then(data => {
-      console.log(data);
-      res.redirect(`/cars/${carId}`);
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-
 module.exports = router;

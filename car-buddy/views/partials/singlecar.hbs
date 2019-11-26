@@ -1,13 +1,35 @@
-
 <h3>{{this.name}}</h3>
-<form action="/cars/{{id}}" method="POST">
-<label for="kms">Kilometers</label>
-<input type="number" name="kms" id="kms" value="{{kms}}"/>
-<button>Update</button>
+<hr>
+<form action="/cars/kms/{{id}}" method="POST">
+  <label for="kms">Kilometers</label>
+  <input type="number" name="kms" id="kms" value="{{kms}}" />
+  <button type="submit">Update</button>
 </form>
-<p>{{oil}}</p>
-<p>{{fuelType}}</p>
-<p>{{insuranceType}} {{insuranceDate}} </p>
+<hr>
+<form action="/cars/oil/{{id}}" method="POST">
+  <label for="oil">Oil changed at:</label>
+  <input type="number" name="oil" id="oil" value="{{oil}}" />
+  <button type="submit">Update</button>
+</form>
+<hr>
+<form action="/cars/tyrePressure/{{id}}" method="POST">
+  <label for="tyrePressure">Tyre Pressure checked at:</label>
+  <p>{{tyrePressure}}</p>
+  <button type="submit">Update</button>
+</form>
+
+<hr>
+<p>Fuel Type: {{fuelType}}</p>
 
 
+<hr>
+<form action="/cars/insurance/{{id}}" method="POST">
+  <label for="tyrePressure">Insurance info:</label>
+  <p>{{insuranceType}} {{insuranceDate}} </p>
+  <button type="submit">Update</button>
+</form>
+<hr>
 
+<form action="/cars/delete/{{id}}" method="POST">
+<button>Delete Car</button>
+</form>

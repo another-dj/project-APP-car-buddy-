@@ -10,8 +10,9 @@ const schema = new mongoose.Schema({
   name: String,
   kms: String,
   oil: {
-    type: Boolean
+    type: String
   },
+  tyrePressure: String,
   fuelType: {
     type: String,
     enum: ["petrol", "diesel"]
