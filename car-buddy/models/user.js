@@ -17,12 +17,22 @@ const schema = new mongoose.Schema({
     type: String,
     required: true
   },
-  mycars: [
+  /* mycars: [
     {
       type: mongoose.Types.ObjectId,
       ref: "Car"
     }
-  ],
+  ], */
+  status: {
+    type: String,
+    enum: ["pending confirmation", "active"],
+    default: "pending confirmation"
+  },
+  confirmationCode: {
+    type: String,
+    required: true,
+    unique: true
+  },
   avatar: String
   },
   {
