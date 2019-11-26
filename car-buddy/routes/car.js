@@ -5,14 +5,19 @@ const router = new express.Router();
 const Car = require("./../models/car");
 const User = require("./../models/user");
 
-/* router.get('/', (req, res, next) => {
-  Car.findbyId()
-  .then(cars=>{
-
-    res.render('carList', {cars});
-  });
-  res.render('carList');
-}); */
+router.get("/list", (req, res, next) => {
+  const id = req.session.user;
+  console.log(id);
+  Car.find({ userId: id })
+    .populate("userId")
+    .then(cars => {
+      console.log("CARS ", cars);
+      res.render("car/list", { cars });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 router.get("/new", (req, res, next) => {
   res.render("car/new");
@@ -20,7 +25,7 @@ router.get("/new", (req, res, next) => {
 
 router.post("/new", (req, res, next) => {
   // console.log(req.file);
-  const creatorId = req.session.user;
+  const userId = req.session.user;
   const kms = req.body.kms;
   const oil = req.body.oil;
   const name = req.body.name;
@@ -28,18 +33,25 @@ router.post("/new", (req, res, next) => {
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
 
-  Car.create({
-    creatorId,
+  const car = {
+    userId,
     kms,
     name,
     //oil,
     fuelType,
     insuranceType,
     insuranceDate
-  })
+  };
+
+  Car.create(car).catch(error => {
+    next(error);
+  });
+
+  User.findByIdAndUpdate(userId, { myCars: car })
+
     .then(document => {
       console.log(document);
-      res.redirect(`/`);
+      res.redirect(`/cars/list`);
     })
     .catch(error => {
       next(error);
