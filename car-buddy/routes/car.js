@@ -62,6 +62,7 @@ router.post("/kms/:carId", (req, res, next) => {
   const newKms = req.body.kms;
   let oilChange = false;
   let tyreStatus = "";
+  let date = new Date();
 
   Car.findById(carId)
     .then(car => {
@@ -84,6 +85,49 @@ router.post("/kms/:carId", (req, res, next) => {
       if (tyreDif > 1000) {
         tyreStatus = "check";
         tyreDif -= 1000;
+      }
+      let year;
+      let month;
+      let day;
+      let yearIns;
+      let monthIns;
+      let dayIns;
+      let insuredate = car.insuranceDate;
+      switch (car.insuranceType) {
+        case "monthly":
+          insuredate = insuredate.slice(5);
+          date = date.slice(5);
+          if (insuredate === date) {
+            //.. retun something
+          }
+          break;
+        case "quarterly":
+          insuredate = insuredate.slice(5);
+          date = date.slice(5);
+          if (insuredate === date) {
+            //.. retun something
+          }
+          break;
+        case "semiannualy":
+          insuredate = insuredate.slice(5);
+          date = date.slice(5);
+          if (insuredate === date) {
+            //.. retun something
+          }
+
+          break;
+        case "yearly":
+          year = date.getFullYear();
+          yearIns = car.insuranceDate.getFullYear();
+          month = date.getMonth();
+          monthIns = car.insuranceDate.getMonth();
+          day = date.getDate();
+          dayIns = car.insuranceDate.getDate();
+          if (month -1 === monthIns && day === dayIns) {
+            const wrng = car.insuranceDate.toString().slice(4, 15);
+            console.log(`Your insurance expires at ${wrng}`);
+          }
+          break;
       }
 
       Car.findByIdAndUpdate(car._id, {
@@ -201,13 +245,13 @@ router.post("/insurance/:carId", (req, res, next) => {
         dayIns = car.insuranceDate.getDate();
         if (month -1 === monthIns && day === dayIns) {
           const wrng = car.insuranceDate.toString().slice(4, 15);
-          console.log(`Your insurance expires at ${wrng}`)
+          console.log(`Your insurance expires at ${wrng}`);
         }
-
         break;
     }
   });
 });
+
 
 router.get("/carsedit/:carId", (req, res, next) =>{
   const id = req.session.user;
