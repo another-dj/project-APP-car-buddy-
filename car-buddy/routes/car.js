@@ -58,17 +58,22 @@ router.post("/new", (req, res, next) => {
 
 // car model update
 router.post("/kms/:carId", (req, res, next) => {
-  console.log("KMS", req.body.kms, "OIL", req.body.oil);
   const carId = req.params.carId;
   const newKms = req.body.kms;
-
+  
   Car.findById(carId)
-    .then(car => {
-      if (newKms - car.oil >= 10000) {
-        console.log("OIL CHANGE");
-      }
-      Car.findByIdAndUpdate(car._id, { kms: newKms })
-      .then(() => {
+  .then(car => {
+    console.log("before update", car.oilStatus );
+    if (car.fuelType === 'petrol' && newKms - car.oil >= 10000) {
+      console.log("OIL CHANGE");
+      car.oilStatus = 'nok';
+    } else if (car.fuelType === 'diesel' && newKms - car.oil >= 15000) {
+      console.log("OIL CHANGE");
+      car.oilStatus = 'nok';
+    }
+    Car.findByIdAndUpdate(car._id, { kms: newKms })
+    .then(() => {
+      console.log("after update", car.oilStatus );
         res.redirect(`/cars/${car._id}`);
       });
     })
