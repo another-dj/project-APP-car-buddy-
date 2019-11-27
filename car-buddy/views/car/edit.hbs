@@ -1,0 +1,35 @@
+<h1>Edit a Car</h1>
+<h2>{{car.name}}</h2>
+<form action="/cars/edit/{{car._id}}" method="POST">
+
+  <label for="name">Edit Car Name</label>
+  <input type="text" name="name" id="name" value="{{car.name}}"/>
+
+  <label for="kms">Edit Kilometers</label>
+  <input type="number" name="kms" id="kms" value="{{car.kms}}"/>
+  
+  <label for="oil">Edit Oil Change</label>
+  <input type="number" name="oil" id="oil" value="{{car.oil}}"/>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Edit Insurance Type</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="insuranceType" value="{{car.insuranceType}}">
+      <option>yearly</option>
+      <option>semiannualy</option>
+      <option>quarterly</option>
+      <option>monthly</option>
+    </select>
+  </div>
+
+  <label for="insurancedate">Edit Insurance Date</label>
+  <input type="date" name="insuranceDate" id="insurance-date" value="{{car.insuranceDate}}"/>
+
+ <div class="form-group">
+    <label for="exampleFormControlSelect1">Edit Fuel Type</label>
+    <select name="fuelType" class="form-control" id="exampleFormControlSelect1" value="{{car.fuelType}}">
+      <option value="petrol">Petrol</option>
+      <option value="diesel">Diesel</option>
+    </select>
+  </div>
+  <button>Edit car</button>
+</form>

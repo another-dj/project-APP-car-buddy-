@@ -34,7 +34,7 @@ const schema = new mongoose.Schema({
     enum: ["yearly", "semiannualy", "quarterly", "monthly"]
   },
   insuranceDate: {
-    type: String
+    type: Date
   }
 });
 

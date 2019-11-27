@@ -15,10 +15,10 @@
     <input type="number" name="oil" id="oil" value="{{oil}}" />
     <button type="submit">Update</button>
   </form>
-  {{#if this.oilChange }} 
-    <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
+  {{#if this.oilChange }}
+  <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
   {{else}}
-    <p style="color:green">Oil is ok</p>
+  <p style="color:green">Oil is ok</p>
   {{/if}}
 </div>
 
@@ -28,7 +28,7 @@
   {{#if_eq tyreStatus "check"}}
   <p style="color: orange">Please check your tyre pressure, {{tyreDif}} kms passed!!</p>
   {{else}}
-  <p> </p>
+  <p style="color: green">All ok</p>
   {{/if_eq}}
   <button type="submit">Reset</button>
 </form>
@@ -38,11 +38,12 @@
 <hr>
 <form action="/cars/insurance/{{id}}" method="POST">
   <label for="tyrePressure">Insurance info:</label>
-  <p>{{insuranceType}} {{insuranceDate}} </p>
-  <button type="submit">Update</button>
+  <p>{{insuranceType}} </p>
+  <p id="date-display">{{insuranceDate}}</p>
+  <button type="submit">Payed</button>
 </form>
 <hr>
 
 <form action="/cars/delete/{{id}}" method="POST">
-<button>Delete Car</button>
+  <button>Delete Car</button>
 </form>

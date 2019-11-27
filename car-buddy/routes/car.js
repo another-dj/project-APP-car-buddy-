@@ -66,22 +66,24 @@ router.post("/kms/:carId", (req, res, next) => {
   Car.findById(carId)
     .then(car => {
       console.log("before update", car.oilChange);
-      const oilDif = newKms - car.oil;
+      let oilDif = newKms - car.oil;
       let tyreDif = newKms - car.tyrePressure;
 
-      if (car.fuelType === "petrol" && oilDif >= 10000) {
+      if (car.fuelType === "petrol" && oilDif > 10000) {
         console.log("oilDifFF", oilDif);
         oilChange = true;
-      } else if (car.fuelType === "diesel" && oilDif >= 15000) {
+        oilDif -= 10000;
+      } else if (car.fuelType === "diesel" && oilDif > 15000) {
         console.log("oilDifFF", oilDif);
         oilChange = true;
+        oilDif -= 15000;
       } else {
         console.log("oilDifFF", oilDif);
         oilChange = false;
       }
-      if (tyreDif >= 1000) {
+      if (tyreDif > 1000) {
         tyreStatus = "check";
-        tyreDif -=1000;
+        tyreDif -= 1000;
       }
 
       Car.findByIdAndUpdate(car._id, {
@@ -110,11 +112,11 @@ router.post("/oil/:carId", (req, res, next) => {
       console.log("before update", car.oilChange);
       let dif = car.kms - newOil;
 
-      if (car.fuelType === "petrol" && dif >= 10000) {
+      if (car.fuelType === "petrol" && dif > 10000) {
         console.log("DIFFF", dif);
         oilChange = true;
         dif -= 10000;
-      } else if (car.fuelType === "diesel" && dif >= 15000) {
+      } else if (car.fuelType === "diesel" && dif > 15000) {
         console.log("DIFFF", dif);
         oilChange = true;
         dif -= 15000;
@@ -127,7 +129,7 @@ router.post("/oil/:carId", (req, res, next) => {
         oil: newOil,
         oilDif: dif,
         oilChange: oilChange,
-         kms: car.kms
+        kms: car.kms
       }).then(data => {
         console.log(data);
         res.redirect(`/cars/${carId}`);
@@ -138,12 +140,95 @@ router.post("/oil/:carId", (req, res, next) => {
     });
 });
 
-router.post("/tyres/:carId", (req, res, next) => {
+router.post("/tyrePressure/:carId", (req, res, next) => {
   const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
+      console.log(car);
+      Car.findByIdAndUpdate(carId, {
+        tyrePressure: car.kms,
+        tyreStatus: "ok"
+      }).then(() => {
+        res.redirect(`/cars/${carId}`);
+      });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/insurance/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  let date = new Date().toISOString().slice(0, 10);
+  Car.findById(carId).then(car => {
+    let insuredate = car.insuranceDate;
+    switch (car.insuranceType) {
+      case "monthly":
+        insuredate = insuredate.slice(5);
+        date = date.slice(5);
+        if (insuredate === date) {
+          //.. retun something
+        }
+        break;
+      case "quarterly":
+        insuredate = insuredate.slice(5);
+        date = date.slice(5);
+        if (insuredate === date) {
+          //.. retun something
+        }
+        break;
+      case "semiannualy":
+        insuredate = insuredate.slice(5);
+        date = date.slice(5);
+        if (insuredate === date) {
+          //.. retun something
+        }
+
+        break;
+      case "yearly":
+        if (insuredate === date) {
+          //.. retun something
+        }
+
+        break;
+    }
+  });
+});
+
+/* router.get("/edit/:carId", (req, res, next) =>{
+
+}) */
+
+router.get("/edit/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
+      res.render("car/edit", { car });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/edit/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  const kms = req.body.kms;
+  const oil = req.body.oil;
+  const name = req.body.name;
+  const fuelType = req.body.fuelType;
+  const insuranceType = req.body.insuranceType;
+  const insuranceDate = req.body.insuranceDate;
+
   Car.findByIdAndUpdate(carId, {
-    tyrePressure: req.body.kms
-  }).then(() => {
-    res.redirect(`/cars/${carId}`);
+    kms: kms,
+    oil: oil,
+    name: name,
+    fuelType: fuelType,
+    insuranceDate: insuranceDate,
+    insuranceType: insuranceType
+  }).then(car => {
+    console.log("after update", car.oilChange);
+    res.redirect(`/cars/${car._id}`);
   })
   .catch(error => {
     next(error);
