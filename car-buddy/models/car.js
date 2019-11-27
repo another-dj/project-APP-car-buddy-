@@ -21,7 +21,7 @@ const schema = new mongoose.Schema({
   tyreStatus: {
     type: String,
     enum: ["ok", "nok"],
-    default: "ok"
+    default: "ok",
   },
   fuelType: {
     type: String,
