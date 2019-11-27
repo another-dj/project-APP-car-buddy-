@@ -7,25 +7,18 @@
 </form>
 <hr>
 
-{{#if car.oilChange }} 
 <div>
-<form action="/cars/oil/{{id}}" method="POST">
-  <label for="oil">Oil changed at:</label>
-  <input type="number" name="oil" id="oil" value="{{oil}}" />
-  <button type="submit">Update</button>
-</form>
-<p style="color:red">Oil needs to be changed</p>
+  <form action="/cars/oil/{{id}}" method="POST">
+    <label for="oil">Oil changed at:</label>
+    <input type="number" name="oil" id="oil" value="{{oil}}" />
+    <button type="submit">Update</button>
+  </form>
+  {{#if this.oilChange }} 
+    <p style="color:red">Oil needs to be changed</p>
+  {{else}}
+    <p style="color:green">Oil is ok</p>
+  {{/if}}
 </div>
-{{else}}
-<div>
-<form action="/cars/oil/{{id}}" method="POST">
-  <label for="oil">Oil changed at:</label>
-  <input type="number" name="oil" id="oil" value="{{oil}}" />
-  <button type="submit">Update</button>
-</form>
-<p style="color:green">Oil is ok</p>
-</div>
-{{/if}}
 
 <hr>
 <form action="/cars/tyrePressure/{{id}}" method="POST">
