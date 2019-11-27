@@ -19,10 +19,10 @@ const schema = new mongoose.Schema({
   },
   oilDif: String,
   tyrePressure: String,
-  tyreChange: {
-    type: Boolean,
-    
-    default: false
+  tyreStatus: {
+    type: String,
+    enum: ["ok", "check", "change"],
+    default: "ok"
   },
   tyreDif: String,
   fuelType: {

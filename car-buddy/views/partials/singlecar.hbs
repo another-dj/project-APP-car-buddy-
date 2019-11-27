@@ -1,5 +1,7 @@
 <h3>{{this.name}}</h3>
 <hr>
+<p>Fuel Type: {{fuelType}}</p>
+<hr>
 <form action="/cars/kms/{{id}}" method="POST">
   <label for="kms">Kilometers</label>
   <input type="number" name="kms" id="kms" value="{{kms}}" />
@@ -22,13 +24,15 @@
 
 <hr>
 <form action="/cars/tyrePressure/{{id}}" method="POST">
-  <label for="tyrePressure">Tyre Pressure checked at:</label>
-  <p>{{tyrePressure}}</p>
-  <button type="submit">Update</button>
+  <label for="tyrePressure">Tyres</label>
+  {{#if_eq tyreStatus "check"}}
+  <p style="color: orange">Please check your tyre pressure!!</p>
+  {{else}}
+  <p> </p>
+  {{/if_eq}}
+  <button type="submit">Reset</button>
 </form>
 
-<hr>
-<p>Fuel Type: {{fuelType}}</p>
 
 
 <hr>

@@ -24,6 +24,14 @@ const authenticationRouter = require("./routes/authentication");
 
 const app = express();
 
+hbs.registerHelper('if_eq', function(a, b, opts) {
+  if (a == b) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
+
 hbs.registerPartials(__dirname + "/views/partials");
 
 app.set("views", join(__dirname, "views"));
