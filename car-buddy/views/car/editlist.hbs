@@ -1,6 +1,12 @@
 <h1>{{user.name}}'s garage</h1>
+
+{{#if cars}}
 {{#each cars}}
 <ul>
   <li><a href="/cars/edit/{{id}}">{{this.name}}</a></li>
 </ul>
 {{/each}}
+{{else}}
+<p>you have no cars to edit.</p>
+<p>Go to Garage and add a car.</p>
+{{/if}}

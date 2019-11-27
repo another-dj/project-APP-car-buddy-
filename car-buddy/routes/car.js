@@ -195,9 +195,18 @@ router.post("/insurance/:carId", (req, res, next) => {
   });
 });
 
-/* router.get("/edit/:carId", (req, res, next) =>{
-
-}) */
+router.get("/carsedit/:carId", (req, res, next) =>{
+  const id = req.session.user;
+  Car.find({ userId: id })
+    .populate("userId")
+    .then(cars => {
+      console.log("CARS ", cars);
+      res.render("car/editlist", { cars });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
 
 router.get("/edit/:carId", (req, res, next) => {
   const carId = req.params.carId;

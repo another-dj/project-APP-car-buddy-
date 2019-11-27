@@ -44,6 +44,13 @@
 </form>
 <hr>
 
-<form action="/cars/delete/{{id}}" method="POST">
-  <button>Delete Car</button>
+<script>
+function ConfirmDelete()
+{
+  confirm("Are you sure you want to delete?");
+}
+</script>
+
+<form action="/cars/delete/{{id}}" method="POST" >
+  <input type="submit" value="delete" Onclick="ConfirmDelete()" />
 </form>
