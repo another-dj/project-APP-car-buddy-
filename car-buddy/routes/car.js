@@ -159,8 +159,15 @@ router.post("/tyrePressure/:carId", (req, res, next) => {
 
 router.post("/insurance/:carId", (req, res, next) => {
   const carId = req.params.carId;
-  let date = new Date().toISOString().slice(0, 10);
+  //let date = new Date().toISOString().slice(0, 10);
+  let date = new Date();
   Car.findById(carId).then(car => {
+    let year;
+    let month;
+    let day;
+    let yearIns;
+    let monthIns;
+    let dayIns;
     let insuredate = car.insuranceDate;
     switch (car.insuranceType) {
       case "monthly":
@@ -186,8 +193,15 @@ router.post("/insurance/:carId", (req, res, next) => {
 
         break;
       case "yearly":
-        if (insuredate === date) {
-          //.. retun something
+        year = date.getFullYear();
+        yearIns = car.insuranceDate.getFullYear();
+        month = date.getMonth();
+        monthIns = car.insuranceDate.getMonth();
+        day = date.getDate();
+        dayIns = car.insuranceDate.getDate();
+        if (month -1 === monthIns && day === dayIns) {
+          const wrng = car.insuranceDate.toString().slice(4, 15);
+          console.log(`Your insurance expires at ${wrng}`)
         }
 
         break;
