@@ -17,12 +17,14 @@ const schema = new mongoose.Schema({
     
     default: false
   },
+  oilDif: String,
   tyrePressure: String,
   tyreChange: {
     type: Boolean,
     
     default: false
   },
+  tyreDif: String,
   fuelType: {
     type: String,
     enum: ["petrol", "diesel"]

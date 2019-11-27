@@ -14,7 +14,7 @@
     <button type="submit">Update</button>
   </form>
   {{#if this.oilChange }} 
-    <p style="color:red">Oil needs to be changed</p>
+    <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
   {{else}}
     <p style="color:green">Oil is ok</p>
   {{/if}}

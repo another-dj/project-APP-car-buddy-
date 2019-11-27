@@ -65,17 +65,23 @@ router.post("/kms/:carId", (req, res, next) => {
   Car.findById(carId)
     .then(car => {
       console.log("before update", car.oilChange);
-      if (car.fuelType === "petrol" && newKms - car.oil >= 10000) {
-        console.log("OIL CHANGE");
+      const dif = newKms - car.oil;
+
+      if (car.fuelType === "petrol" && dif >= 10000) {
+        console.log("DIFFF", dif);
         oilChange = true;
-        let dif = newKms - car.oil
-      } else if (car.fuelType === "diesel" && newKms - car.oil >= 15000) {
-        console.log("OIL CHANGE");
+      } else if (car.fuelType === "diesel" && dif >= 15000) {
+        console.log("DIFFF", dif);
         oilChange = true;
+      } else {
+        console.log("DIFFF", dif);
+        oilChange = false;
       }
+
       Car.findByIdAndUpdate(car._id, {
         kms: newKms,
-        oilChange: oilChange
+        oilChange: oilChange,
+        oilDif: dif
       }).then(() => {
         console.log("after update", car.oilChange);
         res.redirect(`/cars/${car._id}`);
@@ -88,16 +94,38 @@ router.post("/kms/:carId", (req, res, next) => {
 
 router.post("/oil/:carId", (req, res, next) => {
   const carId = req.params.carId;
+  const newKms = req.body.kms;
+  let oilChange = false;
+
+  Car.findById(carId)
+    .then(car => {
+      console.log("before update", car.oilChange);
+      const dif = newKms - car.oil;
+
+      if (car.fuelType === "petrol" && dif >= 10000) {
+        console.log("DIFFF", dif);
+        oilChange = true;
+      } else if (car.fuelType === "diesel" && dif >= 15000) {
+        console.log("DIFFF", dif);
+        oilChange = true;
+      } else {
+        console.log("DIFFF", dif);
+        oilChange = false;
+      }
+
   Car.findByIdAndUpdate(carId, {
-    oil: req.body.oil
+    oil: req.body.oil,
+    oilDif: dif,
+    oilChange: oilChange
   })
     .then(data => {
       console.log(data);
       res.redirect(`/cars/${carId}`);
-    })
-    .catch(error => {
-      next(error);
     });
+  })
+      .catch(error => {
+        next(error);
+      });
 });
 
 router.post("/delete/:carId", (req, res, next) => {
