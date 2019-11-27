@@ -6,11 +6,27 @@
   <button type="submit">Update</button>
 </form>
 <hr>
+
+{{#if car.oilChange }} 
+<div>
 <form action="/cars/oil/{{id}}" method="POST">
   <label for="oil">Oil changed at:</label>
   <input type="number" name="oil" id="oil" value="{{oil}}" />
   <button type="submit">Update</button>
 </form>
+<p style="color:red">Oil needs to be changed</p>
+</div>
+{{else}}
+<div>
+<form action="/cars/oil/{{id}}" method="POST">
+  <label for="oil">Oil changed at:</label>
+  <input type="number" name="oil" id="oil" value="{{oil}}" />
+  <button type="submit">Update</button>
+</form>
+<p style="color:green">Oil is ok</p>
+</div>
+{{/if}}
+
 <hr>
 <form action="/cars/tyrePressure/{{id}}" method="POST">
   <label for="tyrePressure">Tyre Pressure checked at:</label>
