@@ -26,7 +26,7 @@
 <form action="/cars/tyrePressure/{{id}}" method="POST">
   <label for="tyrePressure">Tyres</label>
   {{#if_eq tyreStatus "check"}}
-  <p style="color: orange">Please check your tyre pressure!!</p>
+  <p style="color: orange">Please check your tyre pressure, {{tyreDif}} kms passed!!</p>
   {{else}}
   <p> </p>
   {{/if_eq}}

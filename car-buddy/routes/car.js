@@ -67,7 +67,7 @@ router.post("/kms/:carId", (req, res, next) => {
     .then(car => {
       console.log("before update", car.oilChange);
       const oilDif = newKms - car.oil;
-      const tyreDif = newKms - car.tyrePressure;
+      let tyreDif = newKms - car.tyrePressure;
 
       if (car.fuelType === "petrol" && oilDif >= 10000) {
         console.log("oilDifFF", oilDif);
@@ -79,9 +79,10 @@ router.post("/kms/:carId", (req, res, next) => {
         console.log("oilDifFF", oilDif);
         oilChange = false;
       }
-       if ( tyreDif >= 1000) {
-         tyreStatus = "check";
-       }
+      if (tyreDif >= 1000) {
+        tyreStatus = "check";
+        tyreDif -=1000;
+      }
 
       Car.findByIdAndUpdate(car._id, {
         kms: newKms,
@@ -101,38 +102,52 @@ router.post("/kms/:carId", (req, res, next) => {
 
 router.post("/oil/:carId", (req, res, next) => {
   const carId = req.params.carId;
-  const newKms = req.body.kms;
+  const newOil = req.body.oil;
   let oilChange = false;
 
   Car.findById(carId)
     .then(car => {
       console.log("before update", car.oilChange);
-      const dif = newKms - car.oil;
+      let dif = car.kms - newOil;
 
       if (car.fuelType === "petrol" && dif >= 10000) {
         console.log("DIFFF", dif);
         oilChange = true;
+        dif -= 10000;
       } else if (car.fuelType === "diesel" && dif >= 15000) {
         console.log("DIFFF", dif);
         oilChange = true;
+        dif -= 15000;
       } else {
         console.log("DIFFF", dif);
         oilChange = false;
       }
 
-  Car.findByIdAndUpdate(carId, {
-    oil: req.body.oil,
-    oilDif: dif,
-    oilChange: oilChange
-  })
-    .then(data => {
-      console.log(data);
-      res.redirect(`/cars/${carId}`);
-    });
-  })
-      .catch(error => {
-        next(error);
+      Car.findByIdAndUpdate(carId, {
+        oil: newOil,
+        oilDif: dif,
+        oilChange: oilChange,
+         kms: car.kms
+      }).then(data => {
+        console.log(data);
+        res.redirect(`/cars/${carId}`);
       });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/tyres/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findByIdAndUpdate(carId, {
+    tyrePressure: req.body.kms
+  }).then(() => {
+    res.redirect(`/cars/${carId}`);
+  })
+  .catch(error => {
+    next(error);
+  });
 });
 
 router.post("/delete/:carId", (req, res, next) => {
