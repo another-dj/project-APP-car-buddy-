@@ -53,7 +53,7 @@
     <li>
   <label for="coolant">Coolant</label>
   {{#if coolantChange}}
-  <p style="color: red">Please change the coolant, {{coolantDif}} kms passed!!</p>
+  <p style="color: orange">Please change the coolant, {{coolantDif}} kms passed!!</p>
   {{else}}
   <p style="color: green">All OK!</p>
   {{/if}}
@@ -72,7 +72,7 @@
   </li>
   <li>
   {{#if brakeChange}}
-  <p style="color: red">Please change your Brakes {{brakeDif}} kms passed!!</p>
+  <p style="color: orange">Please change your Brakes {{brakeDif}} kms passed!!</p>
   {{else}}
   <p style="color: green">All OK!</p>
   {{/if}}
@@ -91,7 +91,7 @@
     <li>
   <label for="airFilter">Air Filter </label>
   {{#if airFilterChange}}
-  <p style="color: red">Please change your Air-filter, {{airFilterDif}} kms passed!!</p>
+  <p style="color: orange">Please change your Air-filter, {{airFilterDif}} kms passed!!</p>
   {{else}}
   <p style="color: green">All OK!</p>
   {{/if}}
