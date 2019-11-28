@@ -1,13 +1,16 @@
-$font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-sans: "Helvetica Neue",
+Helvetica,
+Arial,
+sans-serif;
 $link-color: #00b7ff;
-
-
 
 body {
   margin: 0;
   padding: 1px 0;
   font-family: $font-sans;
-  background-color: rgb(10, 10, 10);
+  // background-color: rgb(10, 10, 10);
+  background-color: hsl(240, 10%, 6%);
+  color: white;
 }
 
 a {
@@ -42,7 +45,7 @@ a {
 .garagenav {
   display: flex;
   align-items: flex-start;
-  
+
 }
 
 .logoutbtn button {
@@ -81,4 +84,5 @@ a {
 #map {
   width: 100%;
   height: 25em;
+  color: initial;
 }

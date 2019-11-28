@@ -1,12 +1,16 @@
 <h1>{{user.name}}'s garage</h1>
 
 {{#if cars}}
-{{#each cars}}
-<ul>
-  <li><a href="/cars/edit/{{id}}">{{this.name}}</a></li>
-</ul>
-{{/each}}
+<div class="row">
+  {{#each cars}}
+  <div class="col col-12 col-sm-6 col-md-4">
+    <a href="/cars/edit/{{id}}">
+      {{> carcard}}
+    </a>
+  </div>
+  {{/each}}
+</div>
 {{else}}
-<p>you have no cars to edit.</p>
+<p>You have no cars to edit.</p>
 <p>Go to Garage and add a car.</p>
 {{/if}}
