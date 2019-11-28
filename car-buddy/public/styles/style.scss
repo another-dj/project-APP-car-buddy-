@@ -11,4 +11,23 @@ a {
   color: $link-color;
 }
 
+.warnings {
+  margin: 2em;
+  padding: 1em;
+  width: 18em;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.checklist {
+  display: flex;
+}
+
+.wrngsForm {
+  list-style-type: none;
+
+}
 

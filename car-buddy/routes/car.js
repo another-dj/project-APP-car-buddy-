@@ -33,6 +33,10 @@ router.post("/new", (req, res, next) => {
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
   const tyrePressure = req.body.kms;
+  const tyreLife = req.body.kms;
+  const coolant = req.body.kms;
+  const brake = req.body.kms;
+  const airFilter = req.body.kms;
 
   const car = {
     userId,
@@ -42,7 +46,11 @@ router.post("/new", (req, res, next) => {
     fuelType,
     insuranceType,
     insuranceDate,
-    tyrePressure
+    tyrePressure,
+    tyreLife,
+    coolant,
+    brake,
+    airFilter
   };
 
   Car.create(car)
@@ -58,10 +66,13 @@ router.post("/new", (req, res, next) => {
 
 // car model update
 router.post("/kms/:carId", (req, res, next) => {
-  const carId = req.params.carId;
   const newKms = req.body.kms;
-  let oilChange = false;
+  const carId = req.params.carId;
   let tyreStatus = "";
+  let oilChange = false;
+  let brakeChange = false;
+  let coolantChange = false;
+  let airFilterChange = false;
   let date = new Date();
 
   Car.findById(carId)
@@ -69,6 +80,11 @@ router.post("/kms/:carId", (req, res, next) => {
       console.log("before update", car.oilChange);
       let oilDif = newKms - car.oil;
       let tyreDif = newKms - car.tyrePressure;
+      let coolantDif = newKms - car.coolant;
+      let brakeDif = newKms - car.brake;
+      let airFilterDif = newKms - car.airFilter;
+      let tyreLifeDif = newKms - car.tyreLife;
+      
 
       if (car.fuelType === "petrol" && oilDif > 10000) {
         console.log("oilDifFF", oilDif);
@@ -86,13 +102,31 @@ router.post("/kms/:carId", (req, res, next) => {
         tyreStatus = "check";
         tyreDif -= 1000;
       }
-      let year;
+      if (tyreLifeDif> 35000) {
+        tyreStatus = "change";
+        tyreLifeDif -= 35000;
+      }
+      if (coolantDif > 45000) {
+        coolantChange = true;
+        coolantDif -= 45000;
+      }
+      if (brakeDif > 75000) {
+        brakeChange = true;
+        brakeDif -= 75000;
+      }
+      if (airFilterDif > 35000) {
+        airFilterChange = true;
+        airFilterDif -= 35000;
+      }
+
+      /* let year;
       let month;
       let day;
       let yearIns;
       let monthIns;
       let dayIns;
       let insuredate = car.insuranceDate;
+      let newDate;
       switch (car.insuranceType) {
         case "monthly":
           insuredate = insuredate.slice(5);
@@ -123,19 +157,32 @@ router.post("/kms/:carId", (req, res, next) => {
           monthIns = car.insuranceDate.getMonth();
           day = date.getDate();
           dayIns = car.insuranceDate.getDate();
-          if (month -1 === monthIns && day === dayIns) {
+          if (month < monthIns && day === dayIns) {
             const wrng = car.insuranceDate.toString().slice(4, 15);
             console.log(`Your insurance expires at ${wrng}`);
+      
+            if (car.insurancePaid) {
+              newDate = new Date(`${monthIns}/${dayIns}/${yearIns + 1 } 00:00`);
+            }
           }
           break;
-      }
+      } */
 
       Car.findByIdAndUpdate(car._id, {
         kms: newKms,
         oilChange: oilChange,
         oilDif: oilDif,
+        coolantChange: coolantChange,
+        coolantDif: coolantDif,
+        brakeChange: brakeChange,
+        brakeDif: brakeDif,
+        airFilterChange: airFilterChange,
+        airFilterDif: airFilterDif,
         tyreStatus: tyreStatus,
-        tyreDif: tyreDif
+        tyreDif: tyreDif,
+        tyreLifeDif: tyreLifeDif
+
+        //insuranceDate: newDate
       }).then(() => {
         console.log("after update", car.oilChange);
         res.redirect(`/cars/${car._id}`);
@@ -188,10 +235,63 @@ router.post("/tyrePressure/:carId", (req, res, next) => {
   const carId = req.params.carId;
   Car.findById(carId)
     .then(car => {
+      let update;
+      if (car.tyreStatus === 'change') {
+        update = { tyreLife:car.kms, tyrePressure: car.kms, tyreStatus: "ok" };
+      } else if (car.tyreStatus === 'check' ) {
+        update = { tyrePressure: car.kms, tyreStatus: "ok" };
+      }
+      
+      Car.findByIdAndUpdate(carId, update)
+      .then(() => {
+        res.redirect(`/cars/${carId}`);
+      });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.post("/coolant/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
       console.log(car);
       Car.findByIdAndUpdate(carId, {
-        tyrePressure: car.kms,
-        tyreStatus: "ok"
+        coolant: car.kms,
+        coolantChange: false
+      }).then(() => {
+        res.redirect(`/cars/${carId}`);
+      });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+router.post("/brake/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
+      console.log(car);
+      Car.findByIdAndUpdate(carId, {
+        brake: car.kms,
+        brakeChange: false
+      }).then(() => {
+        res.redirect(`/cars/${carId}`);
+      });
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+router.post("/airFilter/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
+      console.log(car);
+      Car.findByIdAndUpdate(carId, {
+        airFilter: car.kms,
+        airFilterChange: false
       }).then(() => {
         res.redirect(`/cars/${carId}`);
       });
@@ -203,53 +303,7 @@ router.post("/tyrePressure/:carId", (req, res, next) => {
 
 router.post("/insurance/:carId", (req, res, next) => {
   const carId = req.params.carId;
-  //let date = new Date().toISOString().slice(0, 10);
-  let date = new Date();
-  Car.findById(carId).then(car => {
-    let year;
-    let month;
-    let day;
-    let yearIns;
-    let monthIns;
-    let dayIns;
-    let insuredate = car.insuranceDate;
-    switch (car.insuranceType) {
-      case "monthly":
-        insuredate = insuredate.slice(5);
-        date = date.slice(5);
-        if (insuredate === date) {
-          //.. retun something
-        }
-        break;
-      case "quarterly":
-        insuredate = insuredate.slice(5);
-        date = date.slice(5);
-        if (insuredate === date) {
-          //.. retun something
-        }
-        break;
-      case "semiannualy":
-        insuredate = insuredate.slice(5);
-        date = date.slice(5);
-        if (insuredate === date) {
-          //.. retun something
-        }
-
-        break;
-      case "yearly":
-        year = date.getFullYear();
-        yearIns = car.insuranceDate.getFullYear();
-        month = date.getMonth();
-        monthIns = car.insuranceDate.getMonth();
-        day = date.getDate();
-        dayIns = car.insuranceDate.getDate();
-        if (month -1 === monthIns && day === dayIns) {
-          const wrng = car.insuranceDate.toString().slice(4, 15);
-          console.log(`Your insurance expires at ${wrng}`);
-        }
-        break;
-    }
-  });
+ 
 });
 
 
