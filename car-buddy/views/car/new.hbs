@@ -1,7 +1,8 @@
 <h1>Add a new Car</h1>
 
-<form action="/cars/new" method="POST">
-
+<form action="/cars/new" method="POST" enctype="multipart/form-data">
+  <label for="avatar">Add a picture of your car</label>
+  <input type="file" name="avatar"/>
   <label for="name">Car Name</label>
   <input type="text" name="name" id="name"/>
   <label for="kms">Kilometers</label>

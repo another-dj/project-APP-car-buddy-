@@ -3,12 +3,12 @@
 <h1>{{user.name}}'s garage</h1>
 {{#each cars}}
 <ul>
-  <li><a href="/cars/{{id}}">{{this.name}}</a></li>
+  <li><a href="/cars/updatekms/{{id}}">{{this.name}} <img src="{{this.avatar}}" alt="{{this.name}} avatar"></a></li>
 </ul>
 {{/each}}
 <a href="/cars/new">Add a car</a>
 {{else}}
-Please Register/login to add a car
+<p>Please Register/login to add a car</p>
 
 {{/if}}
 

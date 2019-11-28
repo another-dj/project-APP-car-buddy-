@@ -5,7 +5,7 @@ const User = require("./../models/user");
 const bcryptjs = require("bcryptjs");
 const nodemailer = require("nodemailer");
 
-const uploader = require("./../middleware/upload");
+
 const routeGuard = require("./../middleware/route-guard");
 
 const transporter = nodemailer.createTransport({
@@ -24,7 +24,7 @@ router.get("/register", (req, res, next) => {
   res.render("authentication/register");
 });
 
-router.post("/register", uploader.single("avatar"), (req, res, next) => {
+router.post("/register", (req, res, next) => {
   let token = "";
   const generateId = length => {
     const characters =
@@ -39,7 +39,7 @@ router.post("/register", uploader.single("avatar"), (req, res, next) => {
   console.log("req", req);
   console.log("req body: ", req.body);
   console.log("BODY", name, email, password);
-  const avatar = req.file ? req.file.url : "";
+  
   return bcryptjs
     .hash(password, 10)
     .then(hash => {
@@ -47,7 +47,6 @@ router.post("/register", uploader.single("avatar"), (req, res, next) => {
         name,
         email,
         passwordHash: hash,
-        avatar: avatar,
         confirmationCode: token
       });
     })

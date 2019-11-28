@@ -4,6 +4,7 @@ const router = new express.Router();
 
 const Car = require("./../models/car");
 const User = require("./../models/user");
+const uploader = require("./../middleware/upload");
 
 router.get("/list", (req, res, next) => {
   const id = req.session.user;
@@ -23,7 +24,7 @@ router.get("/new", (req, res, next) => {
   res.render("car/new");
 });
 
-router.post("/new", (req, res, next) => {
+router.post("/new", uploader.single("avatar"), (req, res, next) => {
   // console.log(req.file);
   const userId = req.session.user;
   const kms = req.body.kms;
@@ -37,6 +38,7 @@ router.post("/new", (req, res, next) => {
   const coolant = req.body.kms;
   const brake = req.body.kms;
   const airFilter = req.body.kms;
+  const avatar = req.file ? req.file.url : "https://api.cobalt.com/social/1.0/image/caravatar.png";
 
   const car = {
     userId,
@@ -50,7 +52,8 @@ router.post("/new", (req, res, next) => {
     tyreLife,
     coolant,
     brake,
-    airFilter
+    airFilter,
+    avatar
   };
 
   Car.create(car)
@@ -58,6 +61,18 @@ router.post("/new", (req, res, next) => {
       console.log(document);
       console.log("INSURANCE DATE", insuranceDate);
       res.redirect(`/cars/list`);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.get("/updatekms/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  
+  Car.findById(carId)
+    .then(car => {
+      res.render("car/kms", { car });
     })
     .catch(error => {
       next(error);
@@ -331,7 +346,7 @@ router.get("/edit/:carId", (req, res, next) => {
     });
 });
 
-router.post("/edit/:carId", (req, res, next) => {
+router.post("/edit/:carId", uploader.single("avatar"), (req, res, next) => {
   const carId = req.params.carId;
   const kms = req.body.kms;
   const oil = req.body.oil;
@@ -339,6 +354,8 @@ router.post("/edit/:carId", (req, res, next) => {
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
+  const avatar = req.file ? req.file.url : "https://api.cobalt.com/social/1.0/image/caravatar.png";
+
 
   Car.findByIdAndUpdate(carId, {
     kms: kms,
@@ -346,7 +363,8 @@ router.post("/edit/:carId", (req, res, next) => {
     name: name,
     fuelType: fuelType,
     insuranceDate: insuranceDate,
-    insuranceType: insuranceType
+    insuranceType: insuranceType,
+    avatar: avatar
   }).then(car => {
     console.log("after update", car.oilChange);
     res.redirect(`/cars/${car._id}`);

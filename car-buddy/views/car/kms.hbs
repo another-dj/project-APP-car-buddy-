@@ -1,0 +1,9 @@
+{{#with car}}
+<h2>{{name}}</h2>
+
+<form action="/cars/kms/{{id}}" method="POST">
+  <label for="kms">First update your kms</label>
+  <input type="number" name="kms" id="kms" value="{{kms}}" />
+  <button type="submit">Update</button>
+</form>
+{{/with}}

@@ -32,8 +32,7 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  },
-  avatar: String
+    }
   },
   {
     timestamps: true

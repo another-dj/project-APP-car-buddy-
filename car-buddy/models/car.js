@@ -59,7 +59,8 @@ const schema = new mongoose.Schema({
     type:Boolean,
     default: false
   },
-  airFilterDif:String
+  airFilterDif:String,
+  avatar: String
 /*   
   brakeFluid:String,
   brakeFluidChange:{
