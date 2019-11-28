@@ -8,7 +8,6 @@ const logger = require("morgan");
 const sassMiddleware = require("node-sass-middleware");
 const serveFavicon = require("serve-favicon");
 const hbs = require("hbs");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const expressSession = require("express-session");
 const connectMongo = require("connect-mongo");
@@ -24,11 +23,11 @@ const authenticationRouter = require("./routes/authentication");
 
 const app = express();
 
-hbs.registerHelper('if_eq', function(a, b, opts) {
+hbs.registerHelper("if_eq", function(a, b, opts) {
   if (a == b) {
-      return opts.fn(this);
+    return opts.fn(this);
   } else {
-      return opts.inverse(this);
+    return opts.inverse(this);
   }
 });
 
@@ -37,9 +36,6 @@ hbs.registerPartials(__dirname + "/views/partials");
 app.set("views", join(__dirname, "views"));
 app.set("view engine", "hbs");
 
-app.use(logger("dev"));
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(serveFavicon(join(__dirname, "public/images", "favicon.ico")));
 app.use(
   sassMiddleware({
@@ -47,10 +43,14 @@ app.use(
     dest: join(__dirname, "public"),
     outputStyle:
       process.env.NODE_ENV === "development" ? "nested" : "compressed",
-    sourceMap: true
+    sourceMap: true,
+    force: process.env.NODE_ENV === "development"
   })
 );
 app.use(express.static(join(__dirname, "public")));
+
+app.use(logger("dev"));
+app.use(express.urlencoded({ extended: true }));
 
 // COOKIE
 app.use(cookieParser());
@@ -61,10 +61,10 @@ app.use(
     saveUninitialized: false,
     cookie: {
       maxAge: 60 * 60 * 24 * 15,
-      // sameSite: true,  
+      // sameSite: true,
       sameSite: "lax", //lax=relaxed used because 'use strict'
       httpOnly: true,
-      secure: process.env.NODE_ENV !== "development"
+      secure: process.env.NODE_ENV == "production"
     },
     store: new MongoStore({
       mongooseConnection: mongoose.connection,

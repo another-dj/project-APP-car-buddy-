@@ -1,10 +1,13 @@
 $font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $link-color: #00b7ff;
 
+
+
 body {
   margin: 0;
-  padding: 50px;
+  padding: 1px 0;
   font-family: $font-sans;
+  background-color: rgb(10, 10, 10);
 }
 
 a {
@@ -12,14 +15,15 @@ a {
 }
 
 .warnings {
-  margin: 2em;
+  margin: 1.5em;
   padding: 1em;
-  width: 18em;
+  width: 19em;
   border: 1px solid black;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  height: 12em;
 }
 
 .checklist {
@@ -28,6 +32,49 @@ a {
 
 .wrngsForm {
   list-style-type: none;
+}
 
+.authenticationnav {
+  display: flex;
+  align-items: flex-end;
+}
+
+.garagenav {
+  display: flex;
+  align-items: flex-start;
+  
+}
+
+.logoutbtn button {
+  border: none;
+  background-color: #f4433680;
+  border-radius: 6px;
+}
+
+.logoutbtn span {
+  color: white;
+}
+
+.index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 10em;
+}
+
+.index p {
+  font-style: italic;
+  color: white;
+}
+
+.index h1 {
+  font-weight: 900;
+  color: white;
+}
+
+.navbar-brand {
+  display: flex;
+  justify-content: space-between;
 }
 

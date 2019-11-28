@@ -1,11 +1,37 @@
-{{#if user}}
-        <a href="/user/{{user._id}}">{{user.name}}'s Profile    </a>
-        <form action="/authentication/logout" method="POST">
-          <button>Log Out</button>
-        </form>
-        <br>
-        <a href="/cars/list">Garage</a>
-        {{else}}
-        <a href="/authentication/register">Register</a>
-        <a href="/authentication/login">Log In</a>
-      {{/if}}
+  <nav class="navbar navbar-light bg-dark">
+  {{#if user}}
+
+          <a href="/cars/list" class="garagenav navbar-brand" style="color: white">Garage</a>
+
+          <div class="authenticationnav">
+          <a class="navbar-brand" href="/user/{{user._id}}" style="color: white">
+          <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+          {{user.name}}'s Profile
+          </a>
+          
+          <div class="logoutbtn">
+          <form action="/authentication/logout" method="POST">
+            <button class="navbar-brand"><span>Log Out</span></button>
+          </form>
+          </div>
+
+          </div>
+          
+          {{else}}
+          <div class="authenticationnav">
+          <a class="navbar-brand" href="/authentication/register" style="color: white">
+          <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+          Register
+          </a>
+
+          <a class="navbar-brand" href="/authentication/login" style="color: white">
+          <img src="#" width="30" height="30" class="d-inline-block align-top" alt="">
+          Log In
+          </a>
+          </div>
+        {{/if}}
+  </nav>
+
+      <!-- Image and text -->
+  
+  

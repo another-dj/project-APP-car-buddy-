@@ -1,14 +1,21 @@
-
 {{#if user}}
 <h1>{{user.name}}'s garage</h1>
-{{#each cars}}
-<ul>
-  <li><a href="/cars/updatekms/{{id}}">{{this.name}} <img src="{{this.avatar}}" alt="{{this.name}} avatar"></a></li>
-</ul>
-{{/each}}
+
+<div class="row">
+  {{#each cars}}
+  <div class="col col-12 col-sm-6 col-md-4">
+    <a href="/cars/updatekms/{{id}}">
+      <div class="card mb-3">
+        <img src="{{this.avatar}}" class="card-img-top" alt="{{this.name}} avatar">
+        <div class="card-body">
+          <p class="card-text">{{this.name}}</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  {{/each}}
+</div>
 <a href="/cars/new">Add a car</a>
 {{else}}
 <p>Please Register/login to add a car</p>
-
 {{/if}}
-
