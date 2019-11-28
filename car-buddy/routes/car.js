@@ -38,7 +38,7 @@ router.post("/new", uploader.single("avatar"), (req, res, next) => {
   const coolant = req.body.kms;
   const brake = req.body.kms;
   const airFilter = req.body.kms;
-  const avatar = req.file ? req.file.url : "https://api.cobalt.com/social/1.0/image/caravatar.png";
+  const avatar = req.file ? req.file.url : "https://res.cloudinary.com/dt2evehg4/image/upload/v1574941556/carBudy-pics/caravatar_mkcbm2.png";
 
   const car = {
     userId,
@@ -354,7 +354,7 @@ router.post("/edit/:carId", uploader.single("avatar"), (req, res, next) => {
   const fuelType = req.body.fuelType;
   const insuranceType = req.body.insuranceType;
   const insuranceDate = req.body.insuranceDate;
-  const avatar = req.file ? req.file.url : "https://api.cobalt.com/social/1.0/image/caravatar.png";
+  const avatar = req.file ? req.file.url : "https://res.cloudinary.com/dt2evehg4/image/upload/v1574941556/carBudy-pics/caravatar_mkcbm2.png";
 
 
   Car.findByIdAndUpdate(carId, {
@@ -379,6 +379,17 @@ router.post("/delete/:carId", (req, res, next) => {
   Car.findByIdAndDelete(carId)
     .then(() => {
       res.redirect("/cars/list");
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+router.get("/servicemap/:carId", (req, res, next) => {
+  const carId = req.params.carId;
+  Car.findById(carId)
+    .then(car => {
+      res.render("car/servicemap", { car });
     })
     .catch(error => {
       next(error);

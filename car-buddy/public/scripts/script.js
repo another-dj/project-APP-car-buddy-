@@ -6,10 +6,10 @@ window.addEventListener(
   false
 );
 
-window.addEventListener("load", () => {
+/* window.addEventListener("load", () => {
   let $datedisplayhtml = document.getElementById("date-display");
   console.log($datedisplayhtml);
   return ($datedisplayhtml.innerHTML = $datedisplayhtml.innerHTML.toString().slice(4, 15));
-});
+}); */
 
 

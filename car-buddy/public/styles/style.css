@@ -22,4 +22,8 @@ a {
 .wrngsForm {
   list-style-type: none; }
 
+#map {
+  width: 100%;
+  height: 25em; }
+
 /*# sourceMappingURL=style.css.map */
