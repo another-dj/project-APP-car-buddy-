@@ -1,123 +1,16 @@
-<h3>{{this.name}}</h3>
+<h3 id="carname">{{this.name}}</h3>
+<div class="singlecar-top">
 <br>
 <p>Fuel Type: {{fuelType}}</p>
 <br>
 <div>
   <form action="/cars/kms/{{id}}" method="POST">
-    <label for="kms">Kilometers</label>
+    <label for="kms"><strong>Kilometers</strong></label>
     <input type="number" name="kms" id="kms" value="{{kms}}" />
     <button type="submit">Update</button>
   </form>
 </div>
-<hr>
-
-<div>
-  <form action="/cars/oil/{{id}}" method="POST">
-    <label for="oil">Oil changed at:</label>
-    <input type="number" name="oil" id="oil" value="{{oil}}" />
-    <button type="submit">Update</button>
-  </form>
-  {{#if this.oilChange }}
-  <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
-  {{else}}
-  <p style="color:green">Oil is OK!</p>
-  {{/if}}
-</div>
-<hr>
-
-<div class="checklist">
-  <div class='warnings'>
-    <form action="/cars/tyrePressure/{{id}}" method="POST">
-      <ul class='wrngsForm'>
-        <li>
-          <label for="tyrePressure">Tyres</label>
-          {{#if_eq tyreStatus "ok"}}
-          <p style="color: green">All OK!</p>
-          {{/if_eq}}
-          {{#if_eq tyreStatus "check"}}
-          <p style="color: orange">Please check your tyre pressure, {{tyreDif}} kms passed!!</p>
-          {{/if_eq}}
-          {{#if_eq tyreStatus "change"}}
-          <p style="color: red">Please change your tyres, {{tyreLifeDif}} kms passed!!</p>
-          {{/if_eq}}
-          <button type="submit">Reset</button>
-        </li>
-      </ul>
-    </form>
-  </div>
-
-
-  <div class='warnings'>
-    <form action="/cars/coolant/{{id}}" method="POST">
-      <ul class='wrngsForm'>
-        <li>
-          <label for="coolant">Coolant</label>
-          {{#if coolantChange}}
-          <p style="color: red">Please change the coolant, {{coolantDif}} kms passed!!</p>
-          {{else}}
-          <p style="color: green">All OK!</p>
-          {{/if}}
-          <button type="submit">Reset</button>
-        </li>
-      </ul>
-    </form>
-  </div>
-
-
-  <div class='warnings'>
-    <form action="/cars/brake/{{id}}" method="POST">
-      <ul class='wrngsForm'>
-        <li>
-          <label for="brake">Brakes</label>
-        </li>
-        <li>
-          {{#if brakeChange}}
-          <p style="color: red">Please change your Brakes {{brakeDif}} kms passed!!</p>
-          {{else}}
-          <p style="color: green">All OK!</p>
-          {{/if}}
-        </li>
-        <li>
-          <button type="submit">Reset</button>
-        </li>
-      </ul>
-    </form>
-  </div>
-
-
-  <div class='warnings'>
-    <form class='wrngsForm' action="/cars/airFilter/{{id}}" method="POST">
-      <ul class='wrngsForm'>
-        <li>
-          <label for="airFilter">Air Filter </label>
-          {{#if airFilterChange}}
-          <p style="color: red">Please change your Air-filter, {{airFilterDif}} kms passed!!</p>
-          {{else}}
-          <p style="color: green">All OK!</p>
-          {{/if}}
-          <button type="submit">Reset</button>
-        </li>
-      </ul>
-    </form>
-  </div>
-
-
-
-
-  {{!-- <form class='wrngsForm' action="/cars/insurance/{{id}}" method="POST">
-  <label for="tyrePressure">Insurance info:</label>
-  <p>{{insuranceType}} </p>
-  <p id="date-display">{{insuranceDate}}</p>
-  <button type="submit">Payed</button>
-</form>
- --}}
-</div>
-
-{{!-- <form action="/cars/servicemap/{{id}}" method="GET">
-  <input type="submit" value="Service Maps" />
-</form> --}}
-
-<a href="/cars/servicemap/{{id}}">Service Maps</a>
+<a href="/cars/servicemap/{{id}}"><strong>Service Maps</strong></a>
 
 <br>
 
@@ -130,3 +23,128 @@
 <form action="/cars/delete/{{id}}" method="POST">
   <input type="submit" value="delete" Onclick="ConfirmDelete()" />
 </form>
+</div>
+<hr>
+
+
+<div id="position-div">
+  <div class="checklist">
+    <div class="image-div">
+
+        <form action="/cars/oil/{{id}}" method="POST">
+          <div class='warnings' id="oil-pos">
+            <ul class='wrngsoil'>
+              <li>
+                <label for="oil"><strong>Oil changed at:</strong></label>
+                <input type="number" name="oil" id="oil" value="{{oil}}" style="margin-bottom:1em" />
+                <br>
+                {{#if this.oilChange }}
+                <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
+                {{else}}
+                <p style="color:green">Oil is OK!</p>
+                {{/if}}
+                <button type="submit">Update</button>
+              </li>
+            </ul>
+        </form>
+      
+    </div>
+
+
+    <div class='warnings' id='tyre-pos'>
+      <form action="/cars/tyrePressure/{{id}}" method="POST">
+        <ul class='wrngsForm'>
+          <li>
+            <label for="tyrePressure"><strong>Tyres</strong></label>
+
+            {{#if_eq tyreStatus ""}}
+            <p style="color: green">All OK!</p>
+            {{/if_eq}}
+            {{#if_eq tyreStatus "ok"}}
+            <p style="color: green">All OK!</p>
+            {{/if_eq}}
+
+            {{#if_eq tyreStatus "check"}}
+            <p style="color: orange">Please check your tyre pressure, {{tyreDif}} kms passed!!</p>
+            {{/if_eq}}
+            {{#if_eq tyreStatus "change"}}
+            <p style="color: red">Please change your tyres, {{tyreLifeDif}} kms passed!!</p>
+            {{/if_eq}}
+            <button type="submit">Reset</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+
+    <div class='warnings' id="coolant-pos">
+      <form action="/cars/coolant/{{id}}" method="POST">
+        <ul class='wrngsForm'>
+          <li>
+            <label for="coolant"><strong>Coolant</strong></label>
+            {{#if coolantChange}}
+            <p style="color: red">Please change the coolant, {{coolantDif}} kms passed!!</p>
+            {{else}}
+            <p style="color: green">All OK!</p>
+            {{/if}}
+            <button type="submit">Reset</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+
+    <div class='warnings' id="brake-pos">
+      <form action="/cars/brake/{{id}}" method="POST">
+        <ul class='wrngsForm'>
+          <li>
+            <label for="brake"><strong>Brakes</strong></label>
+          </li>
+          <li>
+            {{#if brakeChange}}
+            <p style="color: red">Please change your Brakes {{brakeDif}} kms passed!!</p>
+            {{else}}
+            <p style="color: green">All OK!</p>
+            {{/if}}
+          </li>
+          <li>
+            <button type="submit">Reset</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+
+    <div class='warnings' id="airfilter-pos">
+      <form class='wrngsForm' action="/cars/airFilter/{{id}}" method="POST">
+        <ul class='wrngsForm'>
+          <li>
+            <label for="airFilter"><strong>Air Filter</strong> </label>
+            {{#if airFilterChange}}
+            <p style="color: red">Please change your Air-filter, {{airFilterDif}} kms passed!!</p>
+            {{else}}
+            <p style="color: green">All OK!</p>
+            {{/if}}
+            <button type="submit">Reset</button>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+
+
+
+    {{!-- <form class='wrngsForm' action="/cars/insurance/{{id}}" method="POST">
+  <label for="tyrePressure">Insurance info:</label> </strong>
+  <p>{{insuranceType}} </p>
+  <p id="date-display">{{insuranceDate}}</p>
+  <button type="submit">Payed</button>
+</form>
+ --}}
+  </div>
+</div>
+
+{{!-- <form action="/cars/servicemap/{{id}}" method="GET">
+  <input type="submit" value="Service Maps" />
+</form> --}}
+

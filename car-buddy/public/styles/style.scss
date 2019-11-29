@@ -19,7 +19,7 @@ a {
 
 .warnings {
   margin: 1.5em;
-  padding: 1em;
+  padding: 0;
   width: 19em;
   border: 1px solid black;
   display: flex;
@@ -27,20 +27,78 @@ a {
   align-items: center;
   justify-content: space-around;
   height: 12em;
-  background-color: rgb(60, 60, 66);
+  background-color: rgba(31, 31, 34, 0.788);
 }
 
 
 .warnings p {
   font-weight: bolder;
+
 }
 
+
 .checklist {
+  width: 90vw;
+  // height: 100vh;
   display: flex;
+  justify-content: center;
+  margin-left: 4em;
 }
+
+
+
+.image-div {
+  margin: 0 0;
+  height: 100vh;
+  width: 80vw;
+  background-repeat: no-repeat;
+  background-image: url("https://res.cloudinary.com/dt2evehg4/image/upload/v1575028074/carBudy-pics/cardiagram_iudpzj.png");
+  background-size: cover;
+}
+
+#position-div {
+  position: relative;
+}
+
+#oil-pos {
+  position: relative;
+  top: 1em;
+  left: 55em;
+}
+
+#coolant-pos {
+  left: 60em;
+  position: relative;
+}
+
+#brake-pos {
+  position: relative;
+  bottom: 3.5em;
+  left: 35em;
+}
+
+#airfilter-pos {
+  position: relative;
+  bottom: 20em;
+  left: 15em; 
+}
+
+#tyre-pos{
+  position: relative;
+  right: 6em;
+  top: 13em;
+  
+}
+
 
 .wrngsForm {
   list-style-type: none;
+  padding: 0;
+}
+
+.wrngsoil {
+  list-style-type: none;
+  padding-left: 3.5em;
 }
 
 .authenticationnav {
@@ -73,7 +131,20 @@ a {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 10em;
+  margin-top: 17em;
+  height: 17em;
+}
+
+#index-text {
+  position: relative;
+  bottom: 24em;
+}
+
+
+.index img{
+  margin-left: 2em;
+  position: relative;
+  top: 4em;
 }
 
 .index p {
@@ -117,4 +188,13 @@ a {
   margin-bottom: 8em;
 }
 
+.singlecar-top {
+  display: flex;
+  margin-top: 3em;
+  justify-content: space-around;
+}
 
+#carname{
+  text-align: center;
+  margin-top: 3em;
+}
