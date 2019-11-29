@@ -137,7 +137,7 @@ a {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 17em;
+  margin-top: 15em;
   height: 17em;
 }
 
@@ -223,11 +223,19 @@ a {
   margin-top: 1em;
 }
 
-.profile-button a {}
+.info-img {
+  height: 5em;
+  width: 5em;
+}
 
 .singlecar-fueltype {
   padding: 0 2em;
   border-radius: 8px;
   background-color: rgb(240, 240, 240);
   color: black;
+}
+
+.index2 {
+  display:flex;
+  flex-wrap: wrap;
 }
