@@ -70,7 +70,7 @@ router.post("/register", (req, res, next) => {
         <strong>hello</strong>
         <br>
         <p>Thanks for joining our community! Please confirm your account by clicking on the link:</p>
-        <strong><a href="http://localhost:3000/authentication/confirm/${token}">Link</a></strong>
+        <strong><a href="https://carbuddy-ironhack.herokuapp.com/authentication/confirm/${token}">Link</a></strong>
         <br>
         <br>        
         <strong>Great to see you!</strong>

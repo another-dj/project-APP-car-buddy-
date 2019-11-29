@@ -3,14 +3,28 @@
 <form action="/user/edit/{{user._id}}" method="POST">
   {{!-- <input type="file" name="avatar" /> --}}
 
-  <label for="input-name">Change name</label>
-  <input type="text" id="input-name" name="name" value="{{user.name}}" />
+  
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Change Name</span>
+    </div>
+  <input type="text" id="input-name" name="name" value="{{user.name}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
 
-  <label for="input-password">Change password</label>
-  <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
 
-  <button type="submit">Confirm changes</button>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Change Password</span>
+</div>
+  <input type="password" name="password" id="input-password" placeholder="A Strong Password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+  <button type="submit" class="btn btn-light">Confirm changes</button>
 </form>
 
 
+
+
+
+
+  
 </div>

@@ -27,6 +27,12 @@ a {
   align-items: center;
   justify-content: space-around;
   height: 12em;
+  background-color: rgb(60, 60, 66);
+}
+
+
+.warnings p {
+  font-weight: bolder;
 }
 
 .checklist {
@@ -46,6 +52,10 @@ a {
   display: flex;
   align-items: flex-start;
 
+}
+
+.garagenav img {
+  margin-right: 0.5em;
 }
 
 .logoutbtn button {
@@ -106,3 +116,5 @@ a {
   margin-top: 8em;
   margin-bottom: 8em;
 }
+
+

@@ -3,17 +3,51 @@
 <h1>Edit a Car</h1>
 <h2>{{car.name}}</h2>
 <form action="/cars/edit/{{car._id}}" method="POST" enctype="multipart/form-data">
-  <label for="avatar">Change picture</label>
+ 
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Fuel Type</span>
+  </div>
+<select name="fuelType" class="form-control" id="exampleFormControlSelect1" value="{{car.fuelType}}">
+      <option value="petrol">Petrol</option>
+      <option value="diesel">Diesel</option>
+    </select>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Kilometers</span>
+  </div>
+  <input type="number" name="kms" id="kms" value="{{car.kms}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Car Name</span>
+  </div>
+  <input type="text" name="name" id="name" value="{{car.name}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Oil Changed at:</span>
+  </div>
+  <input type="number" name="oil" id="oil" value="{{car.oil}}" placeholder="kms" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+    
+  <label for="avatar">Change the picture of your car</label>
   <input type="file" name="avatar"/>
-
-  <label for="name">Edit Car Name</label>
-  <input type="text" name="name" id="name" value="{{car.name}}"/>
-
-  <label for="kms">Edit Kilometers</label>
-  <input type="number" name="kms" id="kms" value="{{car.kms}}"/>
   
-  <label for="oil">Edit Oil Change</label>
-  <input type="number" name="oil" id="oil" value="{{car.oil}}"/>
+
+
+ <div class="form-group">
+    
+  </div>
+  <button>Edit car</button>
+</form>
+
 
 {{!--   <div class="form-group">
     <label for="exampleFormControlSelect1">Edit Insurance Type</label>
@@ -27,15 +61,4 @@
 
   <label for="insurancedate">Edit Insurance Date</label>
   <input type="date" name="insuranceDate" id="insurance-date" value="{{car.insuranceDate}}"/> --}}
-
- <div class="form-group">
-    <label for="exampleFormControlSelect1">Edit Fuel Type</label>
-    <select name="fuelType" class="form-control" id="exampleFormControlSelect1" value="{{car.fuelType}}">
-      <option value="petrol">Petrol</option>
-      <option value="diesel">Diesel</option>
-    </select>
-  </div>
-  <button>Edit car</button>
-</form>
-
 </div>
