@@ -26,8 +26,10 @@ a {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  text-align: center;
   height: 12em;
   background-color: rgba(31, 31, 34, 0.788);
+  border-radius: 8px;
 }
 
 
@@ -50,7 +52,7 @@ a {
 .image-div {
   margin: 0 0;
   height: 100vh;
-  width: 80vw;
+  width: 90vw;
   background-repeat: no-repeat;
   background-image: url("https://res.cloudinary.com/dt2evehg4/image/upload/v1575028074/carBudy-pics/cardiagram_iudpzj.png");
   background-size: cover;
@@ -67,7 +69,8 @@ a {
 }
 
 #coolant-pos {
-  left: 60em;
+  left: 59em;
+  top: 1em;
   position: relative;
 }
 
@@ -80,25 +83,28 @@ a {
 #airfilter-pos {
   position: relative;
   bottom: 20em;
-  left: 15em; 
+  left: 15em;
 }
 
-#tyre-pos{
+#tyre-pos {
   position: relative;
-  right: 6em;
-  top: 13em;
-  
+  right: 5em;
+  top: 15em;
+
 }
 
 
 .wrngsForm {
   list-style-type: none;
   padding: 0;
+
+  /* padding-left: 1.5em; */
 }
 
 .wrngsoil {
   list-style-type: none;
-  padding-left: 3.5em;
+  padding-top: 1em;
+  padding-right: 2em;
 }
 
 .authenticationnav {
@@ -141,7 +147,7 @@ a {
 }
 
 
-.index img{
+.index img {
   margin-left: 2em;
   position: relative;
   top: 4em;
@@ -163,9 +169,16 @@ a {
 }
 
 #map {
+  margin-top: 3em;
   width: 100%;
   height: 25em;
   color: initial;
+}
+
+#map-title {
+  margin-left: 1em;
+  margin-top: 3em;
+
 }
 
 .add-car {
@@ -194,7 +207,27 @@ a {
   justify-content: space-around;
 }
 
-#carname{
+#carname {
   text-align: center;
   margin-top: 3em;
+}
+
+.profile-button {
+  padding: 1em 2em;
+  background-color: rgb(49, 101, 126);
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-right: 2em;
+  margin-top: 1em;
+}
+
+.profile-button a {}
+
+.singlecar-fueltype {
+  padding: 0 2em;
+  border-radius: 8px;
+  background-color: rgb(240, 240, 240);
+  color: black;
 }

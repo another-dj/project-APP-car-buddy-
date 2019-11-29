@@ -1,28 +1,31 @@
 <h3 id="carname">{{this.name}}</h3>
 <div class="singlecar-top">
-<br>
-<p>Fuel Type: {{fuelType}}</p>
-<br>
-<div>
-  <form action="/cars/kms/{{id}}" method="POST">
-    <label for="kms"><strong>Kilometers</strong></label>
-    <input type="number" name="kms" id="kms" value="{{kms}}" />
-    <button type="submit">Update</button>
+  <br>
+  <p class="singlecar-fueltype"><strong> Fuel Type: </strong>{{fuelType}}</p>
+  <br>
+  <div>
+    <form action="/cars/kms/{{id}}" method="POST">
+      <label for="kms"><strong>Kilometers</strong></label>
+      <input type="number" name="kms" id="kms" value="{{kms}}" />
+      <button class="btn btn-light" type="submit">Update</button>
+    </form>
+  </div>
+  <a href="/cars/servicemap/{{id}}" class="btn btn-primary btn-light">
+    <img height="24" width="24"
+      src="https://res.cloudinary.com/dt2evehg4/image/upload/v1575023167/carBudy-pics/maps_aq8rif.png" alt="">
+    <strong>Service Maps</strong></a>
+
+  <br>
+
+  <script>
+    function ConfirmDelete() {
+      confirm("Are you sure you want to delete?");
+    }
+  </script>
+
+  <form action="/cars/delete/{{id}}" method="POST">
+    <input type="submit" class="btn btn-danger" value="delete" Onclick="ConfirmDelete()" />
   </form>
-</div>
-<a href="/cars/servicemap/{{id}}"><strong>Service Maps</strong></a>
-
-<br>
-
-<script>
-  function ConfirmDelete() {
-    confirm("Are you sure you want to delete?");
-  }
-</script>
-
-<form action="/cars/delete/{{id}}" method="POST">
-  <input type="submit" value="delete" Onclick="ConfirmDelete()" />
-</form>
 </div>
 <hr>
 
@@ -31,23 +34,23 @@
   <div class="checklist">
     <div class="image-div">
 
-        <form action="/cars/oil/{{id}}" method="POST">
-          <div class='warnings' id="oil-pos">
-            <ul class='wrngsoil'>
-              <li>
-                <label for="oil"><strong>Oil changed at:</strong></label>
-                <input type="number" name="oil" id="oil" value="{{oil}}" style="margin-bottom:1em" />
-                <br>
-                {{#if this.oilChange }}
-                <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
-                {{else}}
-                <p style="color:green">Oil is OK!</p>
-                {{/if}}
-                <button type="submit">Update</button>
-              </li>
-            </ul>
-        </form>
-      
+      <form action="/cars/oil/{{id}}" method="POST">
+        <div class='warnings' id="oil-pos">
+          <ul class='wrngsoil'>
+            <li>
+              <label for="oil"><strong>Oil changed at:</strong></label>
+              <input type="number" name="oil" id="oil" value="{{oil}}" style="margin-bottom:1em" />
+              <br>
+              {{#if this.oilChange }}
+              <p style="color:red">Oil needed to be changed {{oilDif}} kms ago.</p>
+              {{else}}
+              <p style="color:green">Oil is OK!</p>
+              {{/if}}
+              <button class="btn btn-light" type="submit">Update</button>
+            </li>
+          </ul>
+      </form>
+
     </div>
 
 
@@ -70,7 +73,7 @@
             {{#if_eq tyreStatus "change"}}
             <p style="color: red">Please change your tyres, {{tyreLifeDif}} kms passed!!</p>
             {{/if_eq}}
-            <button type="submit">Reset</button>
+            <button class="btn btn-light" type="submit">Reset</button>
           </li>
         </ul>
       </form>
@@ -87,7 +90,7 @@
             {{else}}
             <p style="color: green">All OK!</p>
             {{/if}}
-            <button type="submit">Reset</button>
+            <button class="btn btn-light" type="submit">Reset</button>
           </li>
         </ul>
       </form>
@@ -108,7 +111,7 @@
             {{/if}}
           </li>
           <li>
-            <button type="submit">Reset</button>
+            <button class="btn btn-light" type="submit">Reset</button>
           </li>
         </ul>
       </form>
@@ -125,7 +128,7 @@
             {{else}}
             <p style="color: green">All OK!</p>
             {{/if}}
-            <button type="submit">Reset</button>
+            <button class="btn btn-light" type="submit">Reset</button>
           </li>
         </ul>
       </form>
@@ -138,7 +141,7 @@
   <label for="tyrePressure">Insurance info:</label> </strong>
   <p>{{insuranceType}} </p>
   <p id="date-display">{{insuranceDate}}</p>
-  <button type="submit">Payed</button>
+  <button class="btn btn-light" type="submit">Payed</button>
 </form>
  --}}
   </div>
@@ -147,4 +150,3 @@
 {{!-- <form action="/cars/servicemap/{{id}}" method="GET">
   <input type="submit" value="Service Maps" />
 </form> --}}
-

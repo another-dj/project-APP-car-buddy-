@@ -1,4 +1,4 @@
-<h3>Service Stations near you</h3>
+<h3 id="map-title">Service Stations near you</h3>
 <!--The div element for the map -->
 <div id="map"></div>
 
@@ -26,7 +26,7 @@
     const $mapContainer = document.getElementById('map');
     map = new google.maps.Map($mapContainer, {
       center: defaultMapCenter,
-      zoom: 12
+      zoom: 13
     });
   }
 
