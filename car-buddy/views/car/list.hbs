@@ -1,3 +1,5 @@
+
+<div class="container">
 {{#if user}}
 <h1>{{user.name}}'s garage</h1>
 
@@ -10,7 +12,10 @@
   </div>
   {{/each}}
 </div>
+</div>
+<div class="add-car navbar-light bg-dark fixed-bottom">
 <a href="/cars/new" class="btn btn-light">Add a car</a>
+</div>
 {{else}}
 <p>Please Register/login to add a car</p>
 {{/if}}

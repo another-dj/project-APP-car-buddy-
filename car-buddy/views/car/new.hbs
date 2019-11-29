@@ -1,15 +1,54 @@
+<div class="container">
+
+
 <h1>Add a new Car</h1>
 
 <form action="/cars/new" method="POST" enctype="multipart/form-data">
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Fuel Type</span>
+  </div>
+<select name="fuelType" class="form-control" id="exampleFormControlSelect1">
+      <option value="petrol">Petrol</option>
+      <option value="diesel">Diesel</option>
+    </select>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Kilometers</span>
+  </div>
+  <input type="number" name="kms" id="kms" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Car Name</span>
+  </div>
+  <input type="text" name="name" id="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Oil Changed at:</span>
+  </div>
+  <input type="number" name="oil" id="oil" placeholder="kms" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+</div>
+
+    
   <label for="avatar">Add a picture of your car</label>
   <input type="file" name="avatar"/>
-  <label for="name">Car Name</label>
-  <input type="text" name="name" id="name"/>
-  <label for="kms">Kilometers</label>
-  <input type="number" name="kms" id="kms"/>
+  <label for="name"></label>
+  <label for="kms"></label>
   
-  <label for="oil">Oil Changed at:</label>
-  <input type="number" name="oil" id="oil" placeholder="kms"/>
+  <label for="oil"></label>
+
+
+ <div class="form-group">
+    
+  </div>
+  <button>Add car</button>
+</form>
 
 {{!--   <div class="form-group">
     <label for="exampleFormControlSelect1">Insurance Type</label>
@@ -23,13 +62,4 @@
 
   <label for="insurancedate">Insurance Date</label>
   <input type="date" name="insuranceDate" id="insurance-date"/> --}}
-
- <div class="form-group">
-    <label for="exampleFormControlSelect1">Fuel Type</label>
-    <select name="fuelType" class="form-control" id="exampleFormControlSelect1">
-      <option value="petrol">Petrol</option>
-      <option value="diesel">Diesel</option>
-    </select>
   </div>
-  <button>Add car</button>
-</form>

@@ -1,9 +1,22 @@
+<div class="container">
+
+
 {{#with car}}
 <h2>{{name}}</h2>
 
 <form action="/cars/kms/{{id}}" method="POST">
-  <label for="kms">First update your kms</label>
-  <input type="number" name="kms" id="kms" value="{{kms}}" />
-  <button type="submit">Update</button>
+
+<div class="input-group input-group-lg">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-lg">First update your kms</span>
+  </div>
+
+  <input type="number" name="kms" id="kms" value="{{kms}}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"/>
+  <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04" >Update</button>
+</div>
 </form>
 {{/with}}
+
+
+
+</div>
