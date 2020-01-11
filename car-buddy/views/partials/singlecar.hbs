@@ -3,14 +3,14 @@
   <br>
   <p class="singlecar-fueltype"><strong> Fuel Type: </strong>{{fuelType}}</p>
   <br>
-  <div>
+  <div class='siglecar-top-element'>
     <form action="/cars/kms/{{id}}" method="POST">
       <label for="kms"><strong>Kilometers</strong></label>
       <input type="number" name="kms" id="kms" value="{{kms}}" />
       <button class="btn btn-light" type="submit">Update</button>
     </form>
   </div>
-  <a href="/cars/servicemap/{{id}}" class="btn btn-primary btn-light">
+  <a href="/cars/servicemap/{{id}}" class="btn btn-primary btn-light siglecar-top-element">
     <img height="24" width="24"
       src="https://res.cloudinary.com/dt2evehg4/image/upload/v1575023167/carBudy-pics/maps_aq8rif.png" alt="">
     <strong>Service Maps</strong></a>
@@ -23,13 +23,13 @@
     }
   </script>
 
-  <form action="/cars/delete/{{id}}" method="POST">
+  <form class='siglecar-top-element' action="/cars/delete/{{id}}" method="POST">
     <input type="submit" class="btn btn-danger" value="delete" Onclick="ConfirmDelete()" />
   </form>
 </div>
 <hr>
 
-
+<div class='stats'>
 <div id="position-div">
   <div class="checklist">
     <div class="image-div">
@@ -150,3 +150,4 @@
 {{!-- <form action="/cars/servicemap/{{id}}" method="GET">
   <input type="submit" value="Service Maps" />
 </form> --}}
+</div>

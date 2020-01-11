@@ -1,7 +1,4 @@
-$font-sans: "Helvetica Neue",
-Helvetica,
-Arial,
-sans-serif;
+$font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $link-color: #00b7ff;
 
 body {
@@ -30,14 +27,12 @@ a {
   height: 12em;
   background-color: rgba(31, 31, 34, 0.788);
   border-radius: 8px;
+  margin-bottom: auto;
 }
-
 
 .warnings p {
   font-weight: bolder;
-
 }
-
 
 .checklist {
   width: 90vw;
@@ -46,8 +41,6 @@ a {
   justify-content: center;
   margin-left: 4em;
 }
-
-
 
 .image-div {
   margin: 0 0;
@@ -64,35 +57,33 @@ a {
 
 #oil-pos {
   position: relative;
-  top: 1em;
-  left: 55em;
+  top: 3em;
+  left: 65em;
 }
 
 #coolant-pos {
-  left: 59em;
-  top: 1em;
+  left: 67em;
+  top: 5em;
   position: relative;
 }
 
 #brake-pos {
   position: relative;
-  bottom: 3.5em;
-  left: 35em;
+  bottom: -3em;
+  left: 40em;
 }
 
 #airfilter-pos {
   position: relative;
-  bottom: 20em;
-  left: 15em;
+  bottom: 15em;
+  left: 18em;
 }
 
 #tyre-pos {
   position: relative;
   right: 5em;
   top: 15em;
-
 }
-
 
 .wrngsForm {
   list-style-type: none;
@@ -115,7 +106,6 @@ a {
 .garagenav {
   display: flex;
   align-items: flex-start;
-
 }
 
 .garagenav img {
@@ -146,11 +136,12 @@ a {
   bottom: 24em;
 }
 
-
 .index img {
   margin-left: 2em;
   position: relative;
   top: 4em;
+  width: auto;
+  height: auto;
 }
 
 .index p {
@@ -178,7 +169,6 @@ a {
 #map-title {
   margin-left: 1em;
   margin-top: 3em;
-
 }
 
 .add-car {
@@ -203,8 +193,15 @@ a {
 
 .singlecar-top {
   display: flex;
-  margin-top: 3em;
+  margin: 3em;
   justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.siglecar-top-element {
+  padding: 1em;
+  margin: 1em;
+  height: 3.5em;
 }
 
 #carname {
@@ -233,9 +230,171 @@ a {
   border-radius: 8px;
   background-color: rgb(240, 240, 240);
   color: black;
+  height: 1.5em;
 }
 
 .index2 {
-  display:flex;
+  display: flex;
   flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1900px) and (max-width: 3000px) {
+  #oil-pos {
+    position: relative;
+    top: 7em;
+    left: 85em;
+  }
+
+  #coolant-pos {
+    left: 90em;
+    top: 11em;
+    position: relative;
+  }
+
+  #brake-pos {
+    position: relative;
+    top: 12em;
+    left: 55em;
+  }
+
+  #airfilter-pos {
+    position: relative;
+    top: -2em;
+    left: 35em;
+  }
+
+  #tyre-pos {
+    position: relative;
+    right: 4em;
+    top: 25em;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1899px) {
+  #position-div {
+    position: relative;
+  }
+
+  #oil-pos {
+    position: relative;
+    top: 3em;
+    left: 65em;
+  }
+
+  #coolant-pos {
+    left: 66em;
+    top: 4em;
+    position: relative;
+  }
+
+  #brake-pos {
+    position: relative;
+    bottom: -1em;
+    left: 40em;
+  }
+
+  #airfilter-pos {
+    position: relative;
+    bottom: 17em;
+    left: 17em;
+  }
+
+  #tyre-pos {
+    position: relative;
+    right: 5em;
+    top: 18em;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1440px) {
+  .checklist {
+    width: 90vw;
+    // height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-left: 4em;
+  }
+
+  .image-div {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: none;
+    width: inherit;
+  }
+
+  #position-div {
+    position: inherit;
+  }
+
+  #oil-pos {
+    position: initial;
+  }
+
+  #coolant-pos {
+    position: initial;
+  }
+
+  #brake-pos {
+    position: inherit;
+  }
+
+  #airfilter-pos {
+    position: inherit;
+  }
+
+  #tyre-pos {
+    position: initial;
+  }
+}
+@media screen and (min-width: 1px) and (max-width: 599px) {
+  .checklist {
+    width: 90vw;
+    // height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-left: 4em;
+  }
+
+  .image-div {
+    display: flex;
+    flex-wrap: wrap;
+    background-image: none;
+    width: inherit;
+  }
+
+  #position-div {
+    position: inherit;
+  }
+
+  #oil-pos {
+    position: initial;
+  }
+
+  #coolant-pos {
+    position: initial;
+  }
+
+  #brake-pos {
+    position: inherit;
+  }
+
+  #airfilter-pos {
+    position: inherit;
+  }
+
+  #tyre-pos {
+    position: initial;
+  }
+
+  .index img {
+    margin-left: 2em;
+    position: relative;
+    top: 4em;
+    width: 15em;
+    height: 15em;
+  }
+
+  #index-text {
+    position: relative;
+    top: 8em;
+  }
 }
